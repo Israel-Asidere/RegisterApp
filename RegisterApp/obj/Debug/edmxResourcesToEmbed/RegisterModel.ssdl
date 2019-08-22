@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RegisterDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Owner">
+    <Key>
+      <PropertyRef Name="OwnerID" />
+    </Key>
+    <Property Name="OwnerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Pos">
+    <Key>
+      <PropertyRef Name="UserPosID" />
+    </Key>
+    <Property Name="UserPosID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Pos" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserPosID" Type="int" Nullable="false" />
+    <Property Name="IsUserPresent" Type="bit" Nullable="false" />
+    <Property Name="Date" Type="date" />
+    <Property Name="TimeIn" Type="time" Precision="7" />
+    <Property Name="TimeOut" Type="time" Precision="7" />
+    <Property Name="OwnerID" Type="int" />
+  </EntityType>
+  <EntityContainer Name="RegisterDBModelStoreContainer">
+    <EntitySet Name="Owner" EntityType="Self.Owner" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pos" EntityType="Self.Pos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

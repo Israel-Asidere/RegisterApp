@@ -1,0 +1,65 @@
+﻿@model IEnumerable<RegisterApp.User>
+@{
+    ViewBag.Title = "Index";
+}
+<h2><b>&nbsp; Hello @Session["OwnerName"].ToString()</b></h2>
+<h2><b>&nbsp; Register</b></h2>
+
+<p>
+    <button type="button" class="btn btn-default" onclick="location.href = '@Url.Action("AddOrEdit", "User")'">Add User To Register</button>
+    <button type="button" class="btn btn-default" onclick="location.href = '@Url.Action("OrderByDate", "User")'">Order By Date</button>
+    <button type="button" class="btn btn-default" onclick="location.href = '@Url.Action("OrderByName", "User")'">Order By Name</button>
+    <button type="button" class="btn btn-default" onclick="location.href = '@Url.Action("OrderByPresent", "User")'">Order By Attendance</button>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserPosID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsUserPresent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeIn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeOut)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserPosID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsUserPresent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeIn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeOut)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.UserID }, new {@class = "btn btn-outline-dark" })
+            @Html.ActionLink("Details", "Details", new { id=item.UserID }, new { @class = "btn btn-outline-primary" }) 
+            @Html.ActionLink("Delete", "Delete", new { id=item.UserID }, new { @class = "btn btn-outline-danger" })
+        </td>
+    </tr>
+}
+
+</table>
